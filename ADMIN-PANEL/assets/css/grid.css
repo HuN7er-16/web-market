@@ -69,3 +69,14 @@
     line-height: .6rem;
     color: #919aa3;
 }
+
+.header-comment {
+    position: absolute;
+    height: 100vh;
+    width: 18rem;
+    left: 30px;
+    background-color: #fff;
+    color: black;
+    box-shadow: 0 1px 20px 0 rgba(70, 90, 100, .08);
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
