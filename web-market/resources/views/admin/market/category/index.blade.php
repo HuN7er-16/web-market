@@ -7,9 +7,9 @@
 @section('content')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item font-size-12"><a href="#">خانه</a></li>
-      <li class="breadcrumb-item font-size-12"><a href="#">بخش فروش</a></li>
-      <li class="breadcrumb-item active font-size-12" aria-current="page">دسته بندی</li>
+      <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
+      <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
+      <li class="breadcrumb-item active font-size-12" aria-current="page">دسته بندی </li>
     </ol>
   </nav>
 
@@ -17,13 +17,13 @@
     <section class="col-12">
         <section class="main-body-container">
             <section class="main-body-container-header">
-                <h5>
+                <h4>
                     دسته بندی
-                </h5>
+                </h4>
             </section>
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 pb-2 border-bottom">
                 <a href="#" class="btn btn-info btn-sm">ایجاد دسته بندی</a>
-                <div class="width-16-rem">
+                <div class="max-width-16-rem">
                     <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                 </div>
             </section>
@@ -34,7 +34,7 @@
                             <th>#</th>
                             <th>نام دسته بندی</th>
                             <th>دسته والد</th>
-                            <th><i class="fa fa-cogs"></i> تنظیمات</th>
+                            <th class="max-width-16-rem text-center"><i class="fa fa-cogs"></i> تنظیمات</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,7 @@
                             <th>1</th>
                             <td>نمایشگر</td>
                             <td>کالای الکترونیکی</td>
-                            <td>
+                            <td class="width-16-rem text-left">
                                 <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> حذف</ش>
                             </td>
@@ -52,7 +52,7 @@
                             <th>2</th>
                             <td>نمایشگر</td>
                             <td>کالای الکترونیکی</td>
-                            <td>
+                            <td class="width-16-rem text-left">
                                 <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> حذف</ش>
                             </td>
@@ -62,7 +62,7 @@
                             <th>3</th>
                             <td>نمایشگر</td>
                             <td>کالای الکترونیکی</td>
-                            <td>
+                            <td class="width-16-rem text-left">
                                 <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> حذف</ش>
                             </td>
