@@ -7,9 +7,9 @@
 @section('content')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
-      <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
-      <li class="breadcrumb-item active font-size-12" aria-current="page">دسته بندی </li>
+      <li class="breadcrumb-item font-size-12"><a href="#"> خانه</a></li>
+      <li class="breadcrumb-item font-size-12"><a href="#"> بخش فروش</a></li>
+      <li class="breadcrumb-item active font-size-12" aria-current="page"> دسته بندی</li>
     </ol>
   </nav>
 
@@ -22,7 +22,7 @@
                 </h4>
             </section>
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 pb-2 border-bottom">
-                <a href="#" class="btn btn-info btn-sm">ایجاد دسته بندی</a>
+                <a href="{{ route('admin.market.category.create') }}" class="btn btn-info btn-sm">ایجاد دسته بندی</a>
                 <div class="max-width-16-rem">
                     <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                 </div>
