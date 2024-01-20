@@ -43,6 +43,10 @@
     width: 16rem;
 }
 
+.width-8-rem {
+    width: 8rem;
+}
+
 .max-width-16-rem {
     max-width: 16rem;
 }
@@ -53,4 +57,8 @@
 
 .main-body {
     font-size: .8rem;
+}
+
+.h-150px {
+    height: 150px;
 }
