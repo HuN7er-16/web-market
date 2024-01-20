@@ -47,6 +47,10 @@
     width: 8rem;
 }
 
+.width-22-rem {
+    width: 22rem;
+}
+
 .max-width-16-rem {
     max-width: 16rem;
 }
