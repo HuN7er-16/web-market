@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Market\BrandController;
 use App\Http\Controllers\Admin\Market\CategoryController;
 use App\Http\Controllers\Admin\Market\CommentController;
@@ -133,4 +135,29 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{id}', [StoreController::class, 'destroy'])->name('admin.market.store.destroy');
         });
     });
+
+    Route::prefix('content')->namespace('Content')->group(function (){
+        //category
+        Route::prefix('category')->group(function () {
+            Route::get('/', [ContentCategoryController::class, 'index'])->name('admin.content.category.index');
+            Route::get('/create', [ContentCategoryController::class, 'create'])->name('admin.content.category.create');
+            Route::post('/store', [ContentCategoryController::class, 'store'])->name('admin.content.category.store');
+            Route::get('/edit/{id}', [ContentCategoryController::class, 'edit'])->name('admin.content.category.edit');
+            Route::put('/update/{id}', [ContentCategoryController::class, 'update'])->name('admin.content.category.update');
+            Route::delete('/destroy/{id}', [ContentCategoryController::class, 'destroy'])->name('admin.content.category.destroy');
+        });
+
+        //comment
+        Route::prefix('comment')->group(function () {
+            Route::get('/', [ContentCommentController::class, 'index'])->name('admin.content.comment.index');
+            Route::get('/show', [ContentCommentController::class, 'show'])->name('admin.content.comment.show');
+            Route::post('/store', [ContentCommentController::class, 'store'])->name('admin.content.comment.store');
+            Route::get('/edit/{id}', [ContentCommentController::class, 'edit'])->name('admin.content.comment.edit');
+            Route::put('/update/{id}', [ContentCommentController::class, 'update'])->name('admin.content.comment.update');
+            Route::delete('/destroy/{id}', [ContentCommentController::class, 'destroy'])->name('admin.content.comment.destroy');
+        });
+
+    });
+
+
 });
