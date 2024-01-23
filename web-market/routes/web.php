@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\Market\PropertyController;
 use App\Http\Controllers\Admin\Market\StoreController;
 use App\Http\Controllers\Admin\Notify\EmailController;
 use App\Http\Controllers\Admin\Notify\SMSController;
+use App\Http\Controllers\Admin\Ticket\TicketController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Admin\User\CustomerController;
 use App\Http\Controllers\Admin\User\PermissionController;
@@ -32,14 +33,14 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->namespace('Admin')->group(function(){
+Route::prefix('admin')->namespace('Admin')->group(function () {
 
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.home');
 
-    Route::prefix('market')->namespace('Market')->group(function(){
+    Route::prefix('market')->namespace('Market')->group(function () {
 
         //category
-        Route::prefix('category')->group(function(){
+        Route::prefix('category')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('admin.market.category.index');
             Route::get('/create', [CategoryController::class, 'create'])->name('admin.market.category.create');
             Route::post('/store', [CategoryController::class, 'store'])->name('admin.market.category.store');
@@ -49,7 +50,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //brand
-        Route::prefix('brand')->group(function(){
+        Route::prefix('brand')->group(function () {
             Route::get('/', [BrandController::class, 'index'])->name('admin.market.brand.index');
             Route::get('/create', [BrandController::class, 'create'])->name('admin.market.brand.create');
             Route::post('/store', [BrandController::class, 'store'])->name('admin.market.brand.store');
@@ -59,7 +60,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //comment
-        Route::prefix('comment')->group(function(){
+        Route::prefix('comment')->group(function () {
             Route::get('/', [CommentController::class, 'index'])->name('admin.market.comment.index');
             Route::get('/show', [CommentController::class, 'show'])->name('admin.market.comment.show');
             Route::post('/store', [CommentController::class, 'store'])->name('admin.market.comment.store');
@@ -69,7 +70,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //delivery
-        Route::prefix('delivery')->group(function(){
+        Route::prefix('delivery')->group(function () {
             Route::get('/', [DeliveryController::class, 'index'])->name('admin.market.delivery.index');
             Route::get('/create', [DeliveryController::class, 'create'])->name('admin.market.delivery.create');
             Route::post('/store', [DeliveryController::class, 'store'])->name('admin.market.delivery.store');
@@ -79,7 +80,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //discount
-        Route::prefix('discount')->group(function(){
+        Route::prefix('discount')->group(function () {
             Route::get('/copan', [DiscountController::class, 'copan'])->name('admin.market.discount.copan');
             Route::get('/copan/create', [DiscountController::class, 'copanCreate'])->name('admin.market.discount.copan.create');
             Route::get('/common-discount', [DiscountController::class, 'commonDiscount'])->name('admin.market.discount.commonDiscount');
@@ -89,7 +90,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //order
-        Route::prefix('order')->group(function(){
+        Route::prefix('order')->group(function () {
             Route::get('/', [OrderController::class, 'all'])->name('admin.market.order.all');
             Route::get('/new-order', [OrderController::class, 'newOrders'])->name('admin.market.order.newOrders');
             Route::get('/sending', [OrderController::class, 'sending'])->name('admin.market.order.sending');
@@ -103,7 +104,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //payment
-        Route::prefix('payment')->group(function(){
+        Route::prefix('payment')->group(function () {
             Route::get('/', [PaymentController::class, 'index'])->name('admin.market.payment.index');
             Route::get('/online', [PaymentController::class, 'online'])->name('admin.market.payment.online');
             Route::get('/offline', [PaymentController::class, 'offline'])->name('admin.market.payment.offline');
@@ -112,7 +113,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //product
-        Route::prefix('product')->group(function(){
+        Route::prefix('product')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('admin.market.product.index');
             Route::get('/create', [ProductController::class, 'create'])->name('admin.market.product.create');
             Route::post('/store', [ProductController::class, 'store'])->name('admin.market.product.store');
@@ -126,7 +127,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //property
-        Route::prefix('property')->group(function(){
+        Route::prefix('property')->group(function () {
             Route::get('/', [PropertyController::class, 'index'])->name('admin.market.property.index');
             Route::get('/create', [PropertyController::class, 'create'])->name('admin.market.property.create');
             Route::post('/store', [PropertyController::class, 'store'])->name('admin.market.property.store');
@@ -136,7 +137,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //store
-        Route::prefix('store')->group(function(){
+        Route::prefix('store')->group(function () {
             Route::get('/', [StoreController::class, 'index'])->name('admin.market.store.index');
             Route::get('/add-to-store', [StoreController::class, 'addToStore'])->name('admin.market.store.add-to-store');
             Route::post('/store', [StoreController::class, 'store'])->name('admin.market.store.store');
@@ -146,9 +147,9 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
     });
 
-    Route::prefix('content')->namespace('Content')->group(function(){
+    Route::prefix('content')->namespace('Content')->group(function () {
         //category
-        Route::prefix('category')->group(function(){
+        Route::prefix('category')->group(function () {
             Route::get('/', [ContentCategoryController::class, 'index'])->name('admin.content.category.index');
             Route::get('/create', [ContentCategoryController::class, 'create'])->name('admin.content.category.create');
             Route::post('/store', [ContentCategoryController::class, 'store'])->name('admin.content.category.store');
@@ -158,7 +159,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //comment
-        Route::prefix('comment')->group(function(){
+        Route::prefix('comment')->group(function () {
             Route::get('/', [ContentCommentController::class, 'index'])->name('admin.content.comment.index');
             Route::get('/show', [ContentCommentController::class, 'show'])->name('admin.content.comment.show');
             Route::post('/store', [ContentCommentController::class, 'store'])->name('admin.content.comment.store');
@@ -168,7 +169,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //faq
-        Route::prefix('faq')->group(function(){
+        Route::prefix('faq')->group(function () {
             Route::get('/', [FAQController::class, 'index'])->name('admin.content.faq.index');
             Route::get('/create', [FAQController::class, 'create'])->name('admin.content.faq.create');
             Route::post('/store', [FAQController::class, 'store'])->name('admin.content.faq.store');
@@ -178,7 +179,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //menu
-        Route::prefix('menu')->group(function(){
+        Route::prefix('menu')->group(function () {
             Route::get('/', [MenuController::class, 'index'])->name('admin.content.menu.index');
             Route::get('/create', [MenuController::class, 'create'])->name('admin.content.menu.create');
             Route::post('/store', [MenuController::class, 'store'])->name('admin.content.menu.store');
@@ -188,7 +189,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //page
-        Route::prefix('page')->group(function(){
+        Route::prefix('page')->group(function () {
             Route::get('/', [PageController::class, 'index'])->name('admin.content.page.index');
             Route::get('/create', [PageController::class, 'create'])->name('admin.content.page.create');
             Route::post('/store', [PageController::class, 'store'])->name('admin.content.page.store');
@@ -198,7 +199,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //post
-        Route::prefix('post')->group(function(){
+        Route::prefix('post')->group(function () {
             Route::get('/', [PostController::class, 'index'])->name('admin.content.post.index');
             Route::get('/create', [PostController::class, 'create'])->name('admin.content.post.create');
             Route::post('/store', [PostController::class, 'store'])->name('admin.content.post.store');
@@ -208,10 +209,10 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
     });
 
-    Route::prefix('user')->namespace('User')->group(function(){
+    Route::prefix('user')->namespace('User')->group(function () {
 
         //admin-user
-        Route::prefix('admin-user')->group(function(){
+        Route::prefix('admin-user')->group(function () {
             Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.admin-user.index');
             Route::get('/create', [AdminUserController::class, 'create'])->name('admin.user.admin-user.create');
             Route::post('/store', [AdminUserController::class, 'store'])->name('admin.user.admin-user.store');
@@ -221,7 +222,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //customer
-        Route::prefix('customer')->group(function(){
+        Route::prefix('customer')->group(function () {
             Route::get('/', [CustomerController::class, 'index'])->name('admin.user.customer.index');
             Route::get('/create', [CustomerController::class, 'create'])->name('admin.user.customer.create');
             Route::post('/store', [CustomerController::class, 'store'])->name('admin.user.customer.store');
@@ -231,7 +232,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //role
-        Route::prefix('role')->group(function(){
+        Route::prefix('role')->group(function () {
             Route::get('/', [RoleController::class, 'index'])->name('admin.user.role.index');
             Route::get('/create', [RoleController::class, 'create'])->name('admin.user.role.create');
             Route::post('/store', [RoleController::class, 'store'])->name('admin.user.role.store');
@@ -241,7 +242,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //permission
-        Route::prefix('permission')->group(function(){
+        Route::prefix('permission')->group(function () {
             Route::get('/', [PermissionController::class, 'index'])->name('admin.user.permission.index');
             Route::get('/create', [PermissionController::class, 'create'])->name('admin.user.permission.create');
             Route::post('/store', [PermissionController::class, 'store'])->name('admin.user.permission.store');
@@ -251,10 +252,10 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
     });
 
-    Route::prefix('notify')->namespace('Notify')->group(function(){
+    Route::prefix('notify')->namespace('Notify')->group(function () {
 
         //email
-        Route::prefix('email')->group(function(){
+        Route::prefix('email')->group(function () {
             Route::get('/', [EmailController::class, 'index'])->name('admin.notify.email.index');
             Route::get('/create', [EmailController::class, 'create'])->name('admin.notify.email.create');
             Route::post('/store', [EmailController::class, 'store'])->name('admin.notify.email.store');
@@ -264,7 +265,7 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
 
         //sms
-        Route::prefix('sms')->group(function(){
+        Route::prefix('sms')->group(function () {
             Route::get('/', [SMSController::class, 'index'])->name('admin.notify.sms.index');
             Route::get('/create', [SMSController::class, 'create'])->name('admin.notify.sms.create');
             Route::post('/store', [SMSController::class, 'store'])->name('admin.notify.sms.store');
@@ -274,6 +275,27 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
         });
     });
 
-    
+    Route::prefix('ticket')->namespace('Ticket')->group(function () {
 
+        Route::get('/new-tickets', [TicketController::class, 'newTickets'])->name('admin.ticket.newTickets');
+        Route::get('/open-tickets', [TicketController::class, 'openTickets'])->name('admin.ticket.openTickets');
+        Route::get('/close-tickets', [TicketController::class, 'closeTickets'])->name('admin.ticket.closeTickets');
+        Route::get('/', [TicketController::class, 'index'])->name('admin.ticket.index');
+        Route::get('/show', [TicketController::class, 'show'])->name('admin.ticket.show');
+        Route::get('/create', [TicketController::class, 'create'])->name('admin.ticket.create');
+        Route::post('/store', [TicketController::class, 'store'])->name('admin.ticket.store');
+        Route::get('/edit/{id}', [TicketController::class, 'edit'])->name('admin.ticket.edit');
+        Route::put('/update/{id}', [TicketController::class, 'update'])->name('admin.ticket.update');
+        Route::delete('/destroy/{id}', [TicketController::class, 'destroy'])->name('admin.ticket.destroy');
+    });
+
+    Route::prefix('setting')->namespace('Setting')->group(function () {
+
+        Route::get('/', [SettingController::class, 'index'])->name('admin.setting.index');
+        Route::get('/create', [SettingController::class, 'create'])->name('admin.setting.create');
+        Route::post('/store', [SettingController::class, 'store'])->name('admin.setting.store');
+        Route::get('/edit/{id}', [SettingController::class, 'edit'])->name('admin.setting.edit');
+        Route::put('/update/{id}', [SettingController::class, 'update'])->name('admin.setting.update');
+        Route::delete('/destroy/{id}', [SettingController::class, 'destroy'])->name('admin.setting.destroy');
+    });
 });
