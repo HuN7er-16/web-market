@@ -15,7 +15,11 @@ class CreateProductMetaTable extends Migration
     {
         Schema::create('product_meta', function (Blueprint $table) {
             $table->id();
+            $table->string('meta_key');
+            $table->string('meta_value');
+            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
