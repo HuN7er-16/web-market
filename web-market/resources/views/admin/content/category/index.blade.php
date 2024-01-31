@@ -33,41 +33,29 @@
                         <tr>
                             <th>#</th>
                             <th>نام دسته بندی</th>
-                            <th>دسته والد</th>
+                            <th>توضیحات</th>
+                            <th>اسلاگ</th>
+                            <th>عکس</th>
+                            <th>تگ ها</th>
                             <th class="max-width-16-rem text-center"><i class="fa fa-cogs"></i> تنظیمات</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($postCategories as $postCategory)
                         <tr>
                             <th>1</th>
-                            <td>نمایشگر</td>
-                            <td>کالای الکترونیکی</td>
+                            <td>{{ $postCategory->name }}</td>
+                            <td>{{ $postCategory->description }}</td>
+                            <td>{{ $postCategory->slug }}</td>
+                            <td><img src="{{ asset($postCategory->image) }}" alt="{{ $postCategory->name }}" width="50" height="50"></td>
+                            <td>{{ $postCategory->tags }}</td>
                             <td class="width-16-rem text-left">
                                 <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
                                 <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> حذف</ش>
                             </td>
 
                         </tr>
-                        <tr>
-                            <th>2</th>
-                            <td>نمایشگر</td>
-                            <td>کالای الکترونیکی</td>
-                            <td class="width-16-rem text-left">
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> حذف</ش>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>نمایشگر</td>
-                            <td>کالای الکترونیکی</td>
-                            <td class="width-16-rem text-left">
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> ویرایش</a>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> حذف</ش>
-                            </td>
-
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </section>
