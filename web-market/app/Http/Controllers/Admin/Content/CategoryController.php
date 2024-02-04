@@ -65,6 +65,7 @@ class CategoryController extends Controller
      */
     public function edit(PostCategory $postCategory)
     {
+        return view('admin.content.category.edit', compact('postCategory'));
     }
 
     /**
@@ -74,9 +75,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostCategoryRequest $request, PostCategory $postCategory)
     {
-        //
+        $inputs = $request->all();
+        $inputs['image'] = 'image';
+        $postCategory->update($inputs);
+        return redirect()->route('admin.content.category.index');
     }
 
     /**
