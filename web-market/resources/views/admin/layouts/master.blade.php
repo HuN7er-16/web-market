@@ -24,6 +24,13 @@
     @include('admin.layouts.script')
     @yield('script')
 
+    <section class="toast-wrapper flex-row-reverse">
+        @include('admin.alerts.toast.success')
+        @include('admin.alerts.toast.error')
+    </section>
+
+    @include('admin.alerts.sweetalert.success')
+
 </body>
 
 </html>
