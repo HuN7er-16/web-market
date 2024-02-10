@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $inputs['slug'] = str_replace(' ', '-', $inputs['name']) . '-' . Str::random(5);
         $inputs['image'] = 'image';
         $postCategory = PostCategory::create($inputs);
-        return redirect()->route('admin.content.category.index')->with('swal-success', 'دسته بندی با موفقست ذخیره شد');
+        return redirect()->route('admin.content.category.index')->with('swal-success', 'دسته بندی با موفقیت ذخیره شد');
     }
 
     /**
