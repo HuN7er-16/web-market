@@ -56,7 +56,10 @@
                                     <td>{{ $postCategory->tags }}</td>
                                     <td>
                                         <label for="">
-                                            <input id="{{ $postCategory->id }}" onchange="changeStatus({{ $postCategory->id }})" data-url="{{ route('admin.content.category.status', $postCategory->id) }}" type="checkbox" @if ($postCategory->status === 1) checked @endif>
+                                            <input id="{{ $postCategory->id }}"
+                                                onchange="changeStatus({{ $postCategory->id }})"
+                                                data-url="{{ route('admin.content.category.status', $postCategory->id) }}"
+                                                type="checkbox" @if ($postCategory->status === 1) checked @endif>
                                         </label>
                                     </td>
                                     <td class="width-16-rem text-left">
@@ -82,29 +85,68 @@
 @endsection
 
 @section('script')
-
     <script type="text/javascript">
-        function changeStatus(id){
+        function changeStatus(id) {
             var element = $("#" + id)
             var url = element.attr('data-url')
             var elementValue = !element.prop('checked');
 
             $.ajax({
-                url : url,
-                type : "GET",
-                success : function(response){
-                    if(response.status){
-                        if(response.checked)
-                        element.prop('checked', true);
-                        else
-                        element.prop('checked', false);
-                    }
-                    else{
+                url: url,
+                type: "GET",
+                success: function(response) {
+                    if (response.status) {
+                        if (response.checked) {
+                            element.prop('checked', true);
+                            successToast('دسته بندی با موفقیت فعال شد')
+                        } else {
+                            element.prop('checked', false);
+                            successToast('دسته بندی با موفقیت غیر فعال شد')
+                        }
+                    } else {
                         element.prop('checked', elementValue);
+                        errorToast('هنگام ویرایش مشکلی بوجود امده است')
                     }
+                },
+                error: function() {
+                    element.prop('checked', elementValue);
+                    errorToast('ارتباط برقرار نشد')
                 }
-            })
+            });
+
+            function successToast(message) {
+
+                var successToastTag = '<section class="toast" data-delay="5000">\n' +
+                    '<section class="toast-body py-3 d-flex bg-success text-white">\n' +
+                    '<strong class="ml-auto">' + message + '</strong>\n' +
+                    '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
+                    '<span aria-hidden="true">&times;</span>\n' +
+                    '</button>\n' +
+                    '</section>\n' +
+                    '</section>';
+
+                $('.toast-wrapper').append(successToastTag);
+                $('.toast').toast('show').delay(5500).queue(function() {
+                    $(this).remove();
+                })
+            }
+
+            function errorToast(message) {
+
+                var errorToastTag = '<section class="toast" data-delay="5000">\n' +
+                    '<section class="toast-body py-3 d-flex bg-danger text-white">\n' +
+                    '<strong class="ml-auto">' + message + '</strong>\n' +
+                    '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
+                    '<span aria-hidden="true">&times;</span>\n' +
+                    '</button>\n' +
+                    '</section>\n' +
+                    '</section>';
+
+                $('.toast-wrapper').append(errorToastTag);
+                $('.toast').toast('show').delay(5500).queue(function() {
+                    $(this).remove();
+                })
+            }
         }
     </script>
-
 @endsection
