@@ -42,7 +42,7 @@
                                         value="{{ old('name', $postCategory->name) }}">
                                 </div>
                                 @error('name')
-                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -60,7 +60,7 @@
                                     </select>
                                 </div>
                                 @error('tags')
-                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -80,7 +80,7 @@
                                     </select>
                                 </div>
                                 @error('status')
-                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -95,7 +95,7 @@
                                         id="image">
                                 </div>
                                 @error('image')
-                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -112,7 +112,7 @@
                                 </textarea>
                                 </div>
                                 @error('description')
-                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
