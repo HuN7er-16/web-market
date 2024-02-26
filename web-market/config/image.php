@@ -23,11 +23,11 @@ return [
             'width' => 800,
             'height' => 600
         ],
-        'medium' => [
+         'medium' => [
             'width' => 400,
             'height' => 300
         ],
-        'small' => [
+         'small' => [
             'width' => 80,
             'height' => 60
         ],
@@ -35,5 +35,29 @@ return [
     ],
 
     'default-current-index-image' => 'medium',
+
+
+ //index size
+    'cache-image-sizes' => [
+        'large' => [
+            'width' => 800,
+            'height' => 600
+        ],
+         'medium' => [
+            'width' => 400,
+            'height' => 300
+        ],
+         'small' => [
+            'width' => 80,
+            'height' => 60
+        ],
+
+    ],
+
+    'default-current-cache-image' => 'medium',
+
+    'image-cache-life-time' => 10,
+
+    'image-not-found' => ''
 
 ];
