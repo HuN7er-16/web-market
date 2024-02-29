@@ -10,7 +10,7 @@
             <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
             <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
             <li class="breadcrumb-item font-size-12"> <a href="#">دسته بندی</a></li>
-            <li class="breadcrumb-item font-size-12 active" aria-current="page"> ویرایش دسته بندی</li>
+            <li class="breadcrumb-item font-size-12 active" aria-current="page"> ایجاد دسته بندی</li>
         </ol>
     </nav>
 
@@ -20,7 +20,7 @@
             <section class="main-body-container">
                 <section class="main-body-container-header">
                     <h5>
-                        ویرایش دسته بندی
+                        ایجاد دسته بندی
                     </h5>
                 </section>
 
@@ -42,7 +42,7 @@
                                         value="{{ old('name', $postCategory->name) }}">
                                 </div>
                                 @error('name')
-                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -60,7 +60,7 @@
                                     </select>
                                 </div>
                                 @error('tags')
-                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -80,7 +80,7 @@
                                     </select>
                                 </div>
                                 @error('status')
-                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -95,12 +95,35 @@
                                         id="image">
                                 </div>
                                 @error('image')
-                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
                                     </span>
                                 @enderror
+
+                                <section class="row">
+                                    @php
+                                        $number = 1;
+                                    @endphp
+                                    @foreach ($postCategory->image['indexArray'] as $key => $value)
+                                        <section class="col-md-{{ 6 / $number }}">
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="currentImage"
+                                                    value="{{ $key }}" id="{{ $number }}"
+                                                    @if ($postCategory->image['currentImage'] == $key) checked @endif>
+                                                <label for="{{ $number }}" class="form-check-label mx-2">
+                                                    <img src="{{ asset($value) }}" class="w-100" alt="">
+                                                </label>
+                                            </div>
+                                        </section>
+                                        @php
+                                            $number++;
+                                        @endphp
+                                    @endforeach
+
+                                </section>
+
                             </section>
 
 
@@ -108,11 +131,11 @@
                                 <div class="form-group">
                                     <label for="">توضیحات</label>
                                     <textarea name="description" id="description" class="form-control form-control-sm" rows="6">
-                                    {{ old('description', $postCategory->description) }}
-                                </textarea>
+                                        {{ old('description', $postCategory->description) }}
+                                    </textarea>
                                 </div>
                                 @error('description')
-                                    <span class="alert_required bg-danger p-1 rounded" role="alert">
+                                    <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
                                         <strong>
                                             {{ $message }}
                                         </strong>
@@ -138,7 +161,6 @@
     <script>
         CKEDITOR.replace('description');
     </script>
-
     <script>
         $(document).ready(function() {
             var tags_input = $('#tags');
@@ -155,8 +177,8 @@
                 tags: true,
                 data: default_data
             });
-
             select_tags.children('option').attr('selected', true).trigger('change');
+
 
             $('#form').submit(function(event) {
                 if (select_tags.val() !== null && select_tags.val().length > 0) {
