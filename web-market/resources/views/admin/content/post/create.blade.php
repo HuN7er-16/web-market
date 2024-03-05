@@ -132,7 +132,8 @@
                             <section class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">تاریخ انتشار</label>
-                                    <input type="text" name="published_at" id="published_at" class="form-control form-control-sm d-none">
+                                    <input type="text" name="published_at" id="published_at"
+                                        class="form-control form-control-sm d-none">
                                     <input type="text" id="published_at_view" class="form-control form-control-sm">
                                 </div>
                                 @error('published_at')
@@ -206,19 +207,18 @@
     <script src="{{ asset('admin-assets/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('admin-assets/jalalidatepicker/persian-date.min.js') }}"></script>
     <script src="{{ asset('admin-assets/jalalidatepicker/persian-datepicker.min.js') }}"></script>
+    <script>
+        CKEDITOR.replace('body');
+        CKEDITOR.replace('summary');
+    </script>
 
     <script>
-        $(document).ready(function (){
+        $(document).ready(function() {
             $('#published_at_view').persianDatepicker({
                 format: 'YYYY/MM/DD',
                 altField: '#published_at'
             })
-        })
-    </script>
-
-    <script>
-        CKEDITOR.replace('body');
-        CKEDITOR.replace('summary');
+        });
     </script>
 
     <script>
