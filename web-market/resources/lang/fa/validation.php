@@ -158,6 +158,8 @@ return [
         "category_id"               => "دسته بندی",
         "status"                    => 'وضعیت',
         "summary"                   => "خلاصه",
-        "tags"                      => 'برچسب ها'
+        "tags"                      => 'برچسب ها',
+        "question"                   => "پرسش",
+        "answer"                   => "پاسخ"
     ],
 ];
