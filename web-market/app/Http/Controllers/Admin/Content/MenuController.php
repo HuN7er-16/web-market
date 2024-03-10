@@ -80,9 +80,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        $result = $menu->delete();
+        return redirect()->route('admin.content.menu.index')->with('swal-success', 'منوی شما با موفقیت حذف شد');
     }
 
 
