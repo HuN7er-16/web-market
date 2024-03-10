@@ -10,7 +10,7 @@
             <li class="breadcrumb-item font-size-12"> <a href="#">خانه</a></li>
             <li class="breadcrumb-item font-size-12"> <a href="#">بخش فروش</a></li>
             <li class="breadcrumb-item font-size-12"> <a href="#">پیج ساز</a></li>
-            <li class="breadcrumb-item font-size-12 active" aria-current="page"> ایجاد پیج</li>
+            <li class="breadcrumb-item font-size-12 active" aria-current="page"> ویرایش پیج</li>
         </ol>
     </nav>
 
@@ -20,7 +20,7 @@
             <section class="main-body-container">
                 <section class="main-body-container-header">
                     <h5>
-                        ایجاد پیج
+                        ویرایش پیج
                     </h5>
                 </section>
 
@@ -29,14 +29,16 @@
                 </section>
 
                 <section>
-                    <form action="{{ route('admin.content.page.store') }}" method="post" id="form">
+                    <form action="{{ route('admin.content.page.update', $page->id) }}" method="post" id="form">
                         @csrf
+                        {{ method_field('put') }}
+
                         <section class="row">
 
                             <section class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">عنوان </label>
-                                    <input type="text" name="title" value="{{ old('title') }}"
+                                    <input type="text" name="title" value="{{ old('title', $page->title) }}"
                                         class="form-control form-control-sm">
                                 </div>
                                 @error('title')
@@ -53,7 +55,7 @@
                                 <div class="form-group">
                                     <label for="tags">تگ ها</label>
                                     <input type="hidden" class="form-control form-control-sm" name="tags" id="tags"
-                                        value="{{ old('tags') }}">
+                                        value="{{ old('tags', $page->tags) }}">
                                     <select class="select2 form-control form-control-sm" id="select_tags" multiple>
 
                                     </select>
@@ -72,9 +74,9 @@
                                     <label for="status">وضعیت</label>
                                     <select name="status" id="" class="form-control form-control-sm"
                                         id="status">
-                                        <option value="0" @if (old('status') == 0) selected @endif>غیرفعال
+                                        <option value="0" @if (old('status', $page->status) == 0) selected @endif>غیرفعال
                                         </option>
-                                        <option value="1" @if (old('status') == 1) selected @endif>فعال
+                                        <option value="1" @if (old('status', $page->status) == 1) selected @endif>فعال
                                         </option>
                                     </select>
                                 </div>
@@ -90,7 +92,7 @@
                             <section class="col-12">
                                 <div class="form-group">
                                     <label for="">محتوی</label>
-                                    <textarea name="body" id="body" class="form-control form-control-sm" rows="6">{{ old('body') }}</textarea>
+                                    <textarea name="body" id="body" class="form-control form-control-sm" rows="6">{{ old('body', $page->body) }}</textarea>
                                 </div>
                                 @error('body')
                                     <span class="alert_required bg-danger text-white p-1 rounded" role="alert">
