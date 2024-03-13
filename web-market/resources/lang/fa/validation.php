@@ -159,7 +159,8 @@ return [
         "status"                    => 'وضعیت',
         "summary"                   => "خلاصه",
         "tags"                      => 'برچسب ها',
-        "question"                   => "پرسش",
-        "answer"                   => "پاسخ"
+        "question"                  => "پرسش",
+        "answer"                    => "پاسخ",
+        "parent_id"                 => "منوی والد"
     ],
 ];
