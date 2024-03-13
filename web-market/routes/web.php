@@ -1,32 +1,43 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
-use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\user\RoleController;
+use App\Http\Controllers\admin\notify\SMSController;
 use App\Http\Controllers\Admin\Content\FAQController;
 use App\Http\Controllers\Admin\Content\MenuController;
-use App\Http\Controllers\Admin\Content\PageController;
-use App\Http\Controllers\Admin\Content\PostController;
+use App\Http\Controllers\admin\content\PageController;
+use App\Http\Controllers\admin\content\PostController;
 use App\Http\Controllers\Admin\Market\BrandController;
-use App\Http\Controllers\Admin\Market\CategoryController;
-use App\Http\Controllers\Admin\Market\CommentController;
-use App\Http\Controllers\Admin\Market\DeliveryController;
-use App\Http\Controllers\Admin\Market\DiscountController;
-use App\Http\Controllers\Admin\Market\GalleryController;
 use App\Http\Controllers\Admin\Market\OrderController;
+use App\Http\Controllers\Admin\Market\StoreController;
+use App\Http\Controllers\admin\notify\EmailController;
+use App\Http\Controllers\admin\ticket\TicketController;
+use App\Http\Controllers\Admin\User\CustomerController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\Market\CommentController;
+use App\Http\Controllers\Admin\Market\GalleryController;
 use App\Http\Controllers\Admin\Market\PaymentController;
 use App\Http\Controllers\Admin\Market\ProductController;
-use App\Http\Controllers\Admin\Market\PropertyController;
-use App\Http\Controllers\Admin\Market\StoreController;
-use App\Http\Controllers\Admin\Notify\EmailController;
-use App\Http\Controllers\Admin\Notify\SMSController;
-use App\Http\Controllers\Admin\Setting\SettingController;
-use App\Http\Controllers\Admin\Ticket\TicketController;
 use App\Http\Controllers\Admin\User\AdminUserController;
-use App\Http\Controllers\Admin\User\CustomerController;
-use App\Http\Controllers\Admin\User\PermissionController;
-use App\Http\Controllers\Admin\User\RoleController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Market\CategoryController;
+use App\Http\Controllers\Admin\Market\DeliveryController;
+use App\Http\Controllers\Admin\Market\DiscountController;
+use App\Http\Controllers\Admin\Market\PropertyController;
+use App\Http\Controllers\admin\setting\SettingController;
+use App\Http\Controllers\admin\user\PermissionController;
+use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
+use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +47,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
 
+    // Route::get('/', 'AdminDashboardController@index')->name('admin.home');
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.home');
 
     Route::prefix('market')->namespace('Market')->group(function () {
@@ -149,6 +161,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     });
 
     Route::prefix('content')->namespace('Content')->group(function () {
+
         //category
         Route::prefix('category')->group(function () {
             Route::get('/', [ContentCategoryController::class, 'index'])->name('admin.content.category.index');
@@ -163,11 +176,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         //comment
         Route::prefix('comment')->group(function () {
             Route::get('/', [ContentCommentController::class, 'index'])->name('admin.content.comment.index');
-            Route::get('/show', [ContentCommentController::class, 'show'])->name('admin.content.comment.show');
-            Route::post('/store', [ContentCommentController::class, 'store'])->name('admin.content.comment.store');
-            Route::get('/edit/{id}', [ContentCommentController::class, 'edit'])->name('admin.content.comment.edit');
-            Route::put('/update/{id}', [ContentCommentController::class, 'update'])->name('admin.content.comment.update');
-            Route::delete('/destroy/{id}', [ContentCommentController::class, 'destroy'])->name('admin.content.comment.destroy');
+            Route::get('/show/{comment}', [ContentCommentController::class, 'show'])->name('admin.content.comment.show');
+            Route::delete('/destroy/{comment}', [ContentCommentController::class, 'destroy'])->name('admin.content.comment.destroy');
+            Route::get('/approved/{comment}', [ContentCommentController::class, 'approved'])->name('admin.content.comment.approved');
+            Route::get('/status/{comment}', [ContentCommentController::class, 'status'])->name('admin.content.comment.status');
         });
 
         //faq
@@ -180,7 +192,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{faq}', [FAQController::class, 'destroy'])->name('admin.content.faq.destroy');
             Route::get('/status/{faq}', [FAQController::class, 'status'])->name('admin.content.faq.status');
         });
-
         //menu
         Route::prefix('menu')->group(function () {
             Route::get('/', [MenuController::class, 'index'])->name('admin.content.menu.index');
@@ -307,12 +318,6 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     });
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
