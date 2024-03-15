@@ -13,7 +13,7 @@ class SMSRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class SMSRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'status' => 'required|numeric|in:0,1',
+            'body' => 'required|max:600|min:5|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'published_at' => 'required|numeric',
         ];
     }
 }
