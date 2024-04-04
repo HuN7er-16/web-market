@@ -143,7 +143,7 @@ return [
         "time"                      => "زمان",
         "available"                 => "موجود",
         "size"                      => "اندازه",
-		"file"                      => "فایل",
+        "file"                      => "فایل",
         "fullname"                  => "نام کامل",
         "postal_code"               => "کد پستی",
         "comment"                   => "نظر",
@@ -161,6 +161,9 @@ return [
         "tags"                      => 'برچسب ها',
         "question"                  => "پرسش",
         "answer"                    => "پاسخ",
-        "parent_id"                 => "منوی والد"
+        "parent_id"                 => "منوی والد",
+        "keywords"                  => "کلمات کلیدی",
+        "logo"                      => "لوگو",
+        "icon"                      => "آیکون"
     ],
 ];
