@@ -20,7 +20,7 @@
             <section class="main-body-container">
                 <section class="main-body-container-header">
                     <h5>
-                        ایجاد دسته بندی
+                        ویرایش دسته بندی
                     </h5>
                 </section>
 
