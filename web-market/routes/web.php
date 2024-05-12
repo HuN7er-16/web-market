@@ -25,9 +25,9 @@ use App\Http\Controllers\Admin\Market\DiscountController;
 use App\Http\Controllers\Admin\Market\PropertyController;
 use App\Http\Controllers\admin\setting\SettingController;
 use App\Http\Controllers\admin\user\PermissionController;
+use App\Http\Controllers\Admin\Notify\EmailFileController;
 use App\Http\Controllers\Admin\Content\CommentController as ContentCommentController;
 use App\Http\Controllers\Admin\Content\CategoryController as ContentCategoryController;
-use App\Http\Controllers\Admin\Notify\EmailFileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +116,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::get('/change-order-status', [OrderController::class, 'changeOrderStatus'])->name('admin.market.order.changeOrderStatus');
             Route::get('/cancel-order', [OrderController::class, 'cancelOrder'])->name('admin.market.order.cancelOrder');
         });
+
 
         //payment
         Route::prefix('payment')->group(function () {
@@ -236,9 +237,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.admin-user.index');
             Route::get('/create', [AdminUserController::class, 'create'])->name('admin.user.admin-user.create');
             Route::post('/store', [AdminUserController::class, 'store'])->name('admin.user.admin-user.store');
-            Route::get('/edit/{id}', [AdminUserController::class, 'edit'])->name('admin.user.admin-user.edit');
-            Route::put('/update/{id}', [AdminUserController::class, 'update'])->name('admin.user.admin-user.update');
-            Route::delete('/destroy/{id}', [AdminUserController::class, 'destroy'])->name('admin.user.admin-user.destroy');
+            Route::get('/edit/{user}', [AdminUserController::class, 'edit'])->name('admin.user.admin-user.edit');
+            Route::put('/update/{user}', [AdminUserController::class, 'update'])->name('admin.user.admin-user.update');
+            Route::delete('/destroy/{user}', [AdminUserController::class, 'destroy'])->name('admin.user.admin-user.destroy');
+            Route::get('/status/{user}', [AdminUserController::class, 'status'])->name('admin.user.admin-user.status');
+            Route::get('/activation/{user}', [AdminUserController::class, 'activation'])->name('admin.user.admin-user.activation');
         });
 
         //customer
@@ -272,6 +275,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         });
     });
 
+
     Route::prefix('notify')->namespace('Notify')->group(function () {
 
         //email
@@ -284,6 +288,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{email}', [EmailController::class, 'destroy'])->name('admin.notify.email.destroy');
             Route::get('/status/{email}', [EmailController::class, 'status'])->name('admin.notify.email.status');
         });
+
 
         //email file
         Route::prefix('email-file')->group(function () {
